@@ -69,8 +69,8 @@ For a more detail example please take a look at the `example` folder.
 
 ## Example
 
-<img src="https://github.com/Pilaba/TopModalSheet/blob/master/example/A.png" width="250" height="450">
-<img src="https://github.com/Pilaba/TopModalSheet/blob/master/example/B.png" width="250" height="450">
+<img src="https://raw.githubusercontent.com/Pilaba/TopModalSheet/master/example/A.png" width="250" height="450">
+<img src="https://raw.githubusercontent.com/Pilaba/TopModalSheet/master/example/B.png" width="250" height="450">
 
 ## -
 
