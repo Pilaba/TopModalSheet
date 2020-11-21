@@ -44,7 +44,7 @@ class TopModalSheetState<T> extends State<TopModalSheet<T>> with SingleTickerPro
         if(!_isPoping) {
           Navigator.pop(context);
         }
-      };
+      }
     });
 
     _animationController.forward();
