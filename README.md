@@ -27,40 +27,6 @@ MaterialButton(
 )
 ```
 
-Here is another way to invoke the modal using a Globalkey to get a smooth pop animation
-
-```dart
-final _topModalSheetKey = GlobalKey<TopModalSheetState>();
-
-MaterialButton(
-  color: Colors.white,
-  elevation: 5,
-  child: const Text("Show TopModal 2"),
-  onPressed: () async {
-    var value = await Navigator.of(context).push<List<int>>(PageRouteBuilder(pageBuilder: (_, __, ___) {
-      return TopModalSheet(
-        key: _topModalSheetKey,
-        child: Container(color: Colors.teal, height: MediaQuery.of(context).size.height * .2, child: Center(
-          child: MaterialButton(
-            color: Colors.white,
-            child: const Text("Back", style: TextStyle(color: Colors.teal),),
-            onPressed: () {
-              _topModalSheetKey.currentState.onBackPressed(data: [1,2,3]);
-            },
-          )
-        )),
-      );
-    }, opaque: false));
-
-    if(value != null){
-      setState(() {
-        _topModalData = "$value";
-      });
-    }
-  },
-)
-```
-
 For a more detail example please take a look at the `example` folder.
 
 ## Example
