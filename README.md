@@ -18,15 +18,11 @@ Simply call showModalTopSheet to display it
 MaterialButton(
   color: Colors.white,
   elevation: 5,
-  child: const Text("Show TopModal"),
+  child: const Text("Show TopModal 1"),
   onPressed: () async {
-    var value = await showTopModalSheet<String>(context: context, child: DumyModal());
-
-    if(value != null){
-      setState(() {
-        _topModalData = value;
-      });
-    }
+    var value = await showTopModalSheet<String?>(context, DumyModal());
+        
+    setState(() { _topModalData = value; });
   },
 )
 ```
