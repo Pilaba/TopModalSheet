@@ -1,3 +1,5 @@
+## 2.0.1
+- Fix typos and code format
 
 ## 2.0.0
 - BREAKING CHANGE API

@@ -4,7 +4,7 @@ A popup simple topModalSheet menu button widget with handsome design and easy to
 
 ## Installations
 
-Add `top_modal_sheet: ^1.0.0` in your `pubspec.yaml` dependencies. And import it:
+Add `top_modal_sheet: ^2.0.0` in your `pubspec.yaml` dependencies. And import it:
 
 ```dart
 import 'package:top_modal_sheet/top_modal_sheet.dart';
