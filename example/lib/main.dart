@@ -15,7 +15,8 @@ class MyApp extends StatelessWidget {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
       statusBarIconBrightness: Brightness.dark,
-      statusBarBrightness: Platform.isAndroid ? Brightness.dark : Brightness.light,
+      statusBarBrightness:
+          Platform.isAndroid ? Brightness.dark : Brightness.light,
       systemNavigationBarColor: Colors.teal,
       systemNavigationBarDividerColor: Colors.grey,
       systemNavigationBarIconBrightness: Brightness.dark,
@@ -24,7 +25,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Demo',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(primarySwatch: Colors.teal, visualDensity: VisualDensity.adaptivePlatformDensity,),
+      theme: ThemeData(
+        primarySwatch: Colors.teal,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
       home: MyHomePage(),
     );
   }
@@ -49,17 +53,24 @@ class _MyHomePageState extends State<MyHomePage> {
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
         child: Column(
           children: <Widget>[
-            Expanded(child: Center(
-              child: Text("$_topModalData", style: TextStyle(fontSize: 30),),
+            Expanded(
+                child: Center(
+              child: Text(
+                "$_topModalData",
+                style: TextStyle(fontSize: 30),
+              ),
             )),
             MaterialButton(
               color: Colors.white,
               elevation: 5,
               child: const Text("Show TopModal 1"),
               onPressed: () async {
-                var value = await showTopModalSheet<String?>(context, DumyModal());
+                var value =
+                    await showTopModalSheet<String?>(context, DumyModal());
 
-                setState(() { _topModalData = value; });
+                setState(() {
+                  _topModalData = value;
+                });
               },
             )
           ],
@@ -78,42 +89,52 @@ class DumyModal extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          const Text("Choose Wisely", style: TextStyle(color: Colors.teal, fontSize: 20), textAlign: TextAlign.center),
+          const Text("Choose Wisely",
+              style: TextStyle(color: Colors.teal, fontSize: 20),
+              textAlign: TextAlign.center),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 10, right: 5),
-                  child: OutlinedButton(
-                    child: Column(
-                      children: [
-                        FlutterLogo(size: MediaQuery.of(context).size.height * .15,),
-                        Padding(padding: EdgeInsets.symmetric(vertical: 2), child: Text("CF Cruz Azul"),)
-                      ],
-                    ),
-                    onPressed: () {
-                      Navigator.of(context).pop("CF Cruz Azul");
-                    },
+                  child: Padding(
+                padding: const EdgeInsets.only(left: 10, right: 5),
+                child: OutlinedButton(
+                  child: Column(
+                    children: [
+                      FlutterLogo(
+                        size: MediaQuery.of(context).size.height * .15,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(vertical: 2),
+                        child: Text("CF Cruz Azul"),
+                      )
+                    ],
                   ),
-                )
-              ),
+                  onPressed: () {
+                    Navigator.of(context).pop("CF Cruz Azul");
+                  },
+                ),
+              )),
               Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 5, right: 10),
-                  child: OutlinedButton(
-                    child: Column(
-                      children: [
-                        FlutterLogo(size: MediaQuery.of(context).size.height * .15,),
-                        Padding(padding: EdgeInsets.symmetric(vertical: 2), child: Text("Monarcas FC"),)
-                      ],
-                    ),
-                    onPressed: () {
-                      Navigator.of(context).pop("Monarcas FC");
-                    },
+                  child: Padding(
+                padding: const EdgeInsets.only(left: 5, right: 10),
+                child: OutlinedButton(
+                  child: Column(
+                    children: [
+                      FlutterLogo(
+                        size: MediaQuery.of(context).size.height * .15,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(vertical: 2),
+                        child: Text("Monarcas FC"),
+                      )
+                    ],
                   ),
-                )
-              )
+                  onPressed: () {
+                    Navigator.of(context).pop("Monarcas FC");
+                  },
+                ),
+              ))
             ],
           ),
         ],
@@ -121,4 +142,3 @@ class DumyModal extends StatelessWidget {
     );
   }
 }
-

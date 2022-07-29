@@ -1,9 +1,9 @@
-
 import 'package:flutter/material.dart';
 
 // Convenient method for easily display a top modal
 // Here we can customize more
-Future<T?> showTopModalSheet<T>(BuildContext context, Widget child, { bool barrierDismissible = true }) {
+Future<T?> showTopModalSheet<T>(BuildContext context, Widget child,
+    {bool barrierDismissible = true}) {
   return showGeneralDialog<T?>(
     context: context,
     barrierDismissible: barrierDismissible,
@@ -18,14 +18,14 @@ Future<T?> showTopModalSheet<T>(BuildContext context, Widget child, { bool barri
             Material(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
-                children: [
-                  child
-                ],
+                children: [child],
               ),
             )
           ],
         ),
-        position: CurvedAnimation(parent: animation, curve: Curves.easeOutCubic).drive(Tween<Offset>(begin: const Offset(0, -1.0), end: Offset.zero)),
+        position: CurvedAnimation(parent: animation, curve: Curves.easeOutCubic)
+            .drive(
+                Tween<Offset>(begin: const Offset(0, -1.0), end: Offset.zero)),
       );
     },
   );
