@@ -36,14 +36,12 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final _topModalSheetKey = GlobalKey<TopModalSheetState>();
-  var _topModalData = "";
+  String? _topModalData;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        brightness: Brightness.dark,
         centerTitle: true,
         title: const Text("TopModalSheet sample"),
       ),
@@ -52,53 +50,17 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           children: <Widget>[
             Expanded(child: Center(
-              child: Text("$_topModalData"),
+              child: Text("$_topModalData", style: TextStyle(fontSize: 30),),
             )),
-            Row(
-              children: [
-                Expanded(child: MaterialButton(
-                  color: Colors.white,
-                  elevation: 5,
-                  child: const Text("Show TopModal 1"),
-                  onPressed: () async {
-                    var value = await showTopModalSheet<String>(context: context, child: DumyModal());
+            MaterialButton(
+              color: Colors.white,
+              elevation: 5,
+              child: const Text("Show TopModal 1"),
+              onPressed: () async {
+                var value = await showTopModalSheet<String?>(context, DumyModal());
 
-                    if(value != null){
-                      setState(() {
-                        _topModalData = value;
-                      });
-                    }
-                  },
-                )),
-                const VerticalDivider(),
-                Expanded(child: MaterialButton(
-                  color: Colors.white,
-                  elevation: 5,
-                  child: const Text("Show TopModal 2"),
-                  onPressed: () async {
-                    var value = await Navigator.of(context).push<List<int>>(PageRouteBuilder(pageBuilder: (_, __, ___) {
-                      return TopModalSheet(
-                        key: _topModalSheetKey,
-                        child: Container(color: Colors.teal, height: MediaQuery.of(context).size.height * .2, child: Center(
-                          child: MaterialButton(
-                            color: Colors.white,
-                            child: const Text("Back", style: TextStyle(color: Colors.teal),),
-                            onPressed: () {
-                              _topModalSheetKey.currentState.onBackPressed(data: [1,2,3]);
-                            },
-                          )
-                        )),
-                      );
-                    }, opaque: false));
-
-                    if(value != null){
-                      setState(() {
-                        _topModalData = "$value";
-                      });
-                    }
-                  },
-                )),
-              ],
+                setState(() { _topModalData = value; });
+              },
             )
           ],
         ),
@@ -110,46 +72,49 @@ class _MyHomePageState extends State<MyHomePage> {
 class DumyModal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Theme.of(context).primaryColor,
-      height: MediaQuery.of(context).size.height * .3,
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: 20),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          Padding(
-            padding: EdgeInsets.only(top: MediaQuery.of(context).viewInsets.top),
-            child: const Text("Choose Wisely", style: TextStyle(color: Colors.white, fontSize: 20), textAlign: TextAlign.center),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(bottom: 5),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 10, right: 5),
-                    child: OutlinedButton(
-                      child: FlutterLogo(size: MediaQuery.of(context).size.height * .15,),
-                      onPressed: () {
-                        Navigator.of(context).pop("Maquina");
-                      },
+          const Text("Choose Wisely", style: TextStyle(color: Colors.teal, fontSize: 20), textAlign: TextAlign.center),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 10, right: 5),
+                  child: OutlinedButton(
+                    child: Column(
+                      children: [
+                        FlutterLogo(size: MediaQuery.of(context).size.height * .15,),
+                        Padding(padding: EdgeInsets.symmetric(vertical: 2), child: Text("CF Cruz Azul"),)
+                      ],
                     ),
-                  )
-                ),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 5, right: 10),
-                    child: OutlinedButton(
-                      child: FlutterLogo(size: MediaQuery.of(context).size.height * .15,),
-                      onPressed: () {
-                        Navigator.of(context).pop("Monarcas");
-                      },
-                    ),
-                  )
+                    onPressed: () {
+                      Navigator.of(context).pop("CF Cruz Azul");
+                    },
+                  ),
                 )
-              ],
-            ),
+              ),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 5, right: 10),
+                  child: OutlinedButton(
+                    child: Column(
+                      children: [
+                        FlutterLogo(size: MediaQuery.of(context).size.height * .15,),
+                        Padding(padding: EdgeInsets.symmetric(vertical: 2), child: Text("Monarcas FC"),)
+                      ],
+                    ),
+                    onPressed: () {
+                      Navigator.of(context).pop("Monarcas FC");
+                    },
+                  ),
+                )
+              )
+            ],
           ),
         ],
       ),
