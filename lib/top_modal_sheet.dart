@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 // Convenient method for easily display a top modal
 // Here we can customize more
-Future<T> showTopModalSheet<T>({ @required BuildContext context, @required Widget child, }) {
+Future<T?> showTopModalSheet<T>({ required BuildContext context, required Widget child, }) {
   return Navigator.of(context).push(PageRouteBuilder<T>(pageBuilder: (_, __, ___) {
     return TopModalSheet<T>(child: child, );
   }, opaque: false));
@@ -13,7 +13,7 @@ class TopModalSheet<T> extends StatefulWidget {
   final Widget child;
   Color backgroundColor;
 
-  TopModalSheet({Key key, @required this.child, this.backgroundColor = Colors.black54}): super(key: key);
+  TopModalSheet({Key? key, required this.child, this.backgroundColor = Colors.black54}): super(key: key);
 
   @override
   TopModalSheetState<T> createState() => TopModalSheetState<T>();
@@ -21,12 +21,12 @@ class TopModalSheet<T> extends StatefulWidget {
 
 class TopModalSheetState<T> extends State<TopModalSheet<T>> with SingleTickerProviderStateMixin {
   final GlobalKey _childKey = GlobalKey();
-  Animation<double> _animation;
-  AnimationController _animationController;
+  late Animation<double> _animation;
+  late AnimationController _animationController;
   bool _isPoping = false;
 
   double get _childHeight {
-    final RenderBox renderBox = _childKey.currentContext.findRenderObject();
+    final RenderBox renderBox = _childKey.currentContext!.findRenderObject() as RenderBox;
     return renderBox.size.height;
   }
 
@@ -53,7 +53,7 @@ class TopModalSheetState<T> extends State<TopModalSheet<T>> with SingleTickerPro
   void _handleDragUpdate(DragUpdateDetails details) {
     if (_dismissUnderway) return;
 
-    var change = details.primaryDelta / (_childHeight ?? details.primaryDelta);
+    var change = details.primaryDelta! / _childHeight;
     _animationController.value += change;
   }
 

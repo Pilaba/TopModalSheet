@@ -129,13 +129,8 @@ class DumyModal extends StatelessWidget {
                 Expanded(
                   child: Padding(
                     padding: const EdgeInsets.only(left: 10, right: 5),
-                    child: OutlineButton(
-                      padding: const EdgeInsets.symmetric(vertical: 15),
-                      child: Image.network("https://www.fifaindex.com/static/FIFA21/images/crest/10/light/1878.webp",
-                        height: MediaQuery.of(context).size.height * .15,
-                      ),
-                      splashColor: Colors.white,
-                      highlightedBorderColor: Colors.teal,
+                    child: OutlinedButton(
+                      child: FlutterLogo(size: MediaQuery.of(context).size.height * .15,),
                       onPressed: () {
                         Navigator.of(context).pop("Maquina");
                       },
@@ -145,13 +140,8 @@ class DumyModal extends StatelessWidget {
                 Expanded(
                   child: Padding(
                     padding: const EdgeInsets.only(left: 5, right: 10),
-                    child: OutlineButton(
-                      padding: const EdgeInsets.symmetric(vertical: 15),
-                      child: Image.network("https://www.fifaindex.com/static/FIFA20/images/crest/10/light/1028.webp",
-                        height: MediaQuery.of(context).size.height * .15,
-                      ),
-                      splashColor: Colors.white,
-                      highlightedBorderColor: Colors.teal,
+                    child: OutlinedButton(
+                      child: FlutterLogo(size: MediaQuery.of(context).size.height * .15,),
                       onPressed: () {
                         Navigator.of(context).pop("Monarcas");
                       },
