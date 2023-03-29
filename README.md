@@ -1,6 +1,6 @@
 # top_modal_sheet
 
-A popup simple topModalSheet menu button widget with handsome design and easy to use.
+Simple modal sheet that appears from the top of the screen
 
 ## Installations
 
