@@ -1,15 +1,16 @@
 import 'dart:io';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:top_modal_sheet/top_modal_sheet.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
@@ -29,18 +30,20 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.teal,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(),
+      home: const MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
+  const MyHomePage({Key? key}) : super(key: key);
+
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  String? _topModalData;
+  String _topModalData = "";
 
   @override
   Widget build(BuildContext context) {
@@ -49,94 +52,79 @@ class _MyHomePageState extends State<MyHomePage> {
         centerTitle: true,
         title: const Text("TopModalSheet sample"),
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-        child: Column(
-          children: <Widget>[
-            Expanded(
-                child: Center(
-              child: Text(
-                "$_topModalData",
-                style: TextStyle(fontSize: 30),
-              ),
-            )),
-            MaterialButton(
-              color: Colors.white,
-              elevation: 5,
-              child: const Text("Show TopModal 1"),
-              onPressed: () async {
-                var value =
-                    await showTopModalSheet<String?>(context, DumyModal());
-
-                setState(() {
-                  _topModalData = value;
-                });
-              },
-            )
-          ],
+      body: Center(
+        child: Text(
+          _topModalData,
+          style: Theme.of(context).textTheme.headlineLarge,
         ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: FloatingActionButton.extended(
+        elevation: 5,
+        label: const Text("Show TopModal 1"),
+        onPressed: _showTopModal,
       ),
     );
   }
+
+  Future<void> _showTopModal() async {
+    final value = await showTopModalSheet<String?>(
+      context,
+      const DummyModal(),
+      backgroundColor: Colors.white,
+      borderRadius: const BorderRadius.vertical(
+        bottom: Radius.circular(20),
+      ),
+    );
+
+    if (value != null) setState(() => _topModalData = value);
+  }
 }
 
-class DumyModal extends StatelessWidget {
+class DummyModal extends StatelessWidget {
+  const DummyModal({Key? key}) : super(key: key);
+
+  static const _values = ["CF Cruz Azul", "Monarcas FC"];
+
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: 20),
+    return SafeArea(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          const Text("Choose Wisely",
-              style: TextStyle(color: Colors.teal, fontSize: 20),
-              textAlign: TextAlign.center),
+          const Text(
+            "Choose Wisely",
+            style: TextStyle(color: Colors.teal, fontSize: 20),
+            textAlign: TextAlign.center,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              Expanded(
-                  child: Padding(
-                padding: const EdgeInsets.only(left: 10, right: 5),
-                child: OutlinedButton(
-                  child: Column(
-                    children: [
-                      FlutterLogo(
-                        size: MediaQuery.of(context).size.height * .15,
+            children: _values
+                .map(
+                  (value) => Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 10, right: 5),
+                      child: OutlinedButton(
+                        child: Column(
+                          children: [
+                            FlutterLogo(
+                              size: MediaQuery.of(context).size.height * .15,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 2),
+                              child: Text(value),
+                            )
+                          ],
+                        ),
+                        onPressed: () => Navigator.pop(context, value),
                       ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(vertical: 2),
-                        child: Text("CF Cruz Azul"),
-                      )
-                    ],
+                    ),
                   ),
-                  onPressed: () {
-                    Navigator.of(context).pop("CF Cruz Azul");
-                  },
-                ),
-              )),
-              Expanded(
-                  child: Padding(
-                padding: const EdgeInsets.only(left: 5, right: 10),
-                child: OutlinedButton(
-                  child: Column(
-                    children: [
-                      FlutterLogo(
-                        size: MediaQuery.of(context).size.height * .15,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(vertical: 2),
-                        child: Text("Monarcas FC"),
-                      )
-                    ],
-                  ),
-                  onPressed: () {
-                    Navigator.of(context).pop("Monarcas FC");
-                  },
-                ),
-              ))
-            ],
+                )
+                .toList(),
           ),
+          const SizedBox(height: 16),
         ],
       ),
     );
