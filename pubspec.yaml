@@ -1,6 +1,6 @@
 name: top_modal_sheet
 description: A simple top modal sheet implementation in pure dart.
-version: 2.0.1
+version: 2.1.0
 repository: https://github.com/Pilaba/TopModalSheet
 
 environment:
@@ -14,6 +14,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_lints: ^3.0.1
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
