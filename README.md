@@ -32,9 +32,9 @@ For a more detail example please take a look at the `example` folder.
 
 ## Example
 
-<img src="https://raw.githubusercontent.com/Pilaba/TopModalSheet/master/example/screenshots/main_screen.png" width="250" height="450">
-<img src="https://raw.githubusercontent.com/Pilaba/TopModalSheet/master/example/screenshots/top_modal.png" width="250" height="450">
-<img src="https://raw.githubusercontent.com/Pilaba/TopModalSheet/master/example/screenshots/top_modal_result.png" width="250" height="450">
+<img src="https://raw.githubusercontent.com/Pilaba/TopModalSheet/master/example/screensshots/main_screen.png" width="250" height="450">
+<img src="https://raw.githubusercontent.com/Pilaba/TopModalSheet/master/example/screensshots/top_modal.png" width="250" height="450">
+<img src="https://raw.githubusercontent.com/Pilaba/TopModalSheet/master/example/screensshots/top_modal_result.png" width="250" height="450">
 
 ## -
 
